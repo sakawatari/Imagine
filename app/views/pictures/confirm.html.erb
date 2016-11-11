@@ -1,15 +1,15 @@
 	<h3>以下の内容で、送信する。</h3>
-		
+
 	<%= form_for(@picture) do |f| %>
 		<%= f.hidden_field :title %>
 		<%= f.hidden_field :content %>
 		<p>タイトル:<%= @picture.title %></p>
 		<p>出来事:<%= @picture.content %></p>
-		<%= f.submit "投稿する" %>
+		<%= f.submit "投稿する", class: "btn btn-default" %>
 	<% end %>
 
 	<%= form_for(@picture, url: new_picture_path, method: 'get') do |f| %>
 		<%= f.hidden_field :title %>
 		<%= f.hidden_field :content %>
-		<%= f.submit "もどる", name: 'back' %>
+		<%= f.submit "キャンセル", class: "btn btn-danger", name: 'back' %>
 	<% end %>

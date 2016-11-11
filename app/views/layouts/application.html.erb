@@ -12,8 +12,15 @@
 <header>
 	<div class="container-fluid">
 		<%= link_to "IMAGINE", root_path, class: 'pull-left' %>
-		<%= link_to "LOGIN", root_path, class: 'pull-right' %>
+		<% if user_signed_in? %>
+			<%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: 'pull-right' %>
+			<%= link_to 'ACCOUNT', edit_user_registration_path, class: 'pull-right' %>
+		<% else %>
+			<%= link_to 'LOGIN', new_user_session_path, class: 'pull-right'  %>
+			<%= link_to 'SIGN-UP', new_user_registration_path, class: 'pull-right' %>
+		<% end %>
 	</div>
+  <p class="flash bg-success"><%= notice %><%= alert %></p>
 </header>
 
 <%= yield %>

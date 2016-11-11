@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /pictures
   # GET /pictures.json
   def index
@@ -20,7 +20,7 @@ class PicturesController < ApplicationController
 			@picture = Picture.new
 		end
   end
-	
+
 	def confirm
 		@picture = Picture.new(picture_params)
 		render :new if @picture.invalid?
