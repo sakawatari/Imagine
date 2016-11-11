@@ -1,0 +1,29 @@
+<%= form_for(@picture, url: choose_new_or_edit) do |f| %>
+	<% if @picture.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= @picture.errors.count %>件のエラーがあります。</h2>
+
+		<ul>
+			<% @picture.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :title, class: 'sr-only'%><br>
+			<%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
+		</div>
+		<div class="form-group">
+			<%= f.label :content, class: 'sr-only' %><br>
+			<%= f.text_area :content, class: 'form-control', placeholder: '出来事', rows: 1, cols: 40 %>
+		</div>
+		<div class="actions">
+			<%= link_to "キャンセル", pictures_path, class: 'btn btn-danger' %>
+			<%= f.submit class: 'btn btn-default' %>
+		</div>
+	</div>
+<% end %>
+
+

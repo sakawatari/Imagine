@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>Imagine</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<header>
+	<div class="container-fluid">
+		<%= link_to "IMAGINE", root_path, class: 'pull-left' %>
+		<%= link_to "LOGIN", root_path, class: 'pull-right' %>
+	</div>
+</header>
+
+<%= yield %>
+
+</body>
+</html>
