@@ -71,3 +71,54 @@ div {
     list-style: square;
   }
 }
+
+.login-wrapper {
+  text-align: center;
+}
+
+.login-box a {
+  text-decoration: none;
+  color: #9d9d9d;
+}
+
+.login-box a:hover {
+  background-color: white;
+	color: black;
+}
+
+.login-box, .sign-up-link-box {
+  width: 40%;
+  padding: 10px;
+  margin: 20px auto 10px;
+  // background-color: #efefef;
+  border: 1px solid #b3b3b3;
+	border-radius: 10px;
+  min-width: 210px;
+}
+
+.profile-wrapper {
+	width: 80%;
+	max-width: 800px;
+	margin: auto;
+	border: 1px solid #b3b3b3;
+}
+
+.left-wrapper {
+	width: 80%;
+	max-width: 800px;
+	border: 1px solid #b3b3b3;
+	text-align: center;
+	padding: 10px;
+	margin: 20px auto 5px;
+}
+
+.right-wrapper {
+	padding: 20px;
+	margin: 0;
+}
+
+.account-name {
+	position: relative;
+	left: 120px;
+	top: -100px;
+}

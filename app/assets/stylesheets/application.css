@@ -22,6 +22,7 @@ header {
 header a {
 	font-size: large;
 	line-height: 29px;
+	margin-right: 10px;
 }
 
 header a:hover {
