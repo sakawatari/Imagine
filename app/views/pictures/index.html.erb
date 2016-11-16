@@ -1,29 +1,21 @@
-<h1>Imaginations</h1>
+<%= link_to '新規投稿', new_picture_path, class: 'btn btn-default btn-lg btn-block new-btn' %><br />
 
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= picture.user.name %></td>
-        <td><%= picture.title %></td>
-        <td><%= picture.content %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Picture', new_picture_path %>
+<div class="imagine-wrapper">
+  <% @pictures.reverse_each do |picture| %>
+    <div class="imagine-box">
+      <div class="poster-wrapper">
+        <%= profile_img(picture.user) if profile_img(picture.user) %>
+        <h4 class=""><%= picture.user.name %></h4>
+      </div>
+      <div class="content-wrapper">
+        <div>タイトル：<%= picture.title %></div>
+        <div><%= picture.content %></div>
+        <%= post_img(picture) %>
+      </div>
+      <div class="select-box">
+        <%= link_to 'Edit', edit_picture_path(picture), class: 'btn btn-success' %>
+        <%= link_to 'Destroy', picture, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -30,3 +30,15 @@ header a:hover {
 	background-color: white;
 	text-decoration: none;
 }
+
+footer {
+	text-align: center;
+	border-top: 1px solid #b3b3b3;
+	border-bottom: 1px solid #b3b3b3;
+	height: 20px;
+	margin-top: 20px;
+}
+
+footer div {
+	line-height: 20px;
+}

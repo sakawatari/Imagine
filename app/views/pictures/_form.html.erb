@@ -1,17 +1,41 @@
-<%= form_for(@picture, url: choose_new_or_edit) do |f| %>
-	<%= f.error_messages! %>
-	<div class="form-inline">
-		<div class="form-group">
-			<%= f.label :title, class: 'sr-only'%><br>
-			<%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
+<div class="form-wrapper">
+
+	<%= form_for(@picture) do |f| %>
+		<%= f.error_messages! %>
+		<div class="form-box">
+			<div class="form-group">
+				<%= f.label :title, class: 'sr-only'%><br>
+				<%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
+			</div>
+			<div class="form-group">
+				<%= f.label :content, class: 'sr-only' %><br>
+				<%= f.text_area :content, class: 'form-control', placeholder: '一言', rows: 1 %>
+			</div>
+
+			<div class="field">
+		    <% if @picture.image? %>
+		      <div class="thumbnail">
+		      <%= image_tag @picture.image.url %>
+		    	</div>
+		  	<% end %><br>
+			    <%= f.label :画像を選択 %><br>
+			    <%= f.file_field :image %>
+			    <%= f.hidden_field :image_cache %>
+		  </div>
+	  	<div class="field">
+		    <% if @picture.persisted? && @picture.image? %>
+		      <label>
+			      <%= f.check_box :remove_image %>
+			      画像を削除
+			    </label>
+		  	<% end %>
+	  	</div>
+
+			<div class="actions select-btn">
+				<%= link_to "キャンセル", pictures_path, class: 'btn btn-danger' %>
+				<%= f.submit class: 'btn btn-default', value: "投稿する" %>
+			</div>
 		</div>
-		<div class="form-group">
-			<%= f.label :content, class: 'sr-only' %><br>
-			<%= f.text_area :content, class: 'form-control', placeholder: '出来事', rows: 1, cols: 40 %>
-		</div>
-		<div class="actions">
-			<%= link_to "キャンセル", pictures_path, class: 'btn btn-danger' %>
-			<%= f.submit class: 'btn btn-default', value: "投稿する" %>
-		</div>
-	</div>
-<% end %>
+	<% end %>
+
+</div>

@@ -1,10 +1,12 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  PERMISSIBLE_ATTRIBUTES = %i(image image_cache)
   # GET /pictures
   # GET /pictures.json
   def index
     @pictures = Picture.all
+    @users = User.all
   end
 
   # GET /pictures/1
@@ -21,10 +23,11 @@ class PicturesController < ApplicationController
 		end
   end
 
-	def confirm
-		@picture = Picture.new(picture_params)
-		render :new if @picture.invalid?
-	end
+	# def confirm
+	# 	@picture = Picture.new(picture_params)
+	# 	render :new if @picture.invalid?
+  #   binding.pry
+	# end
 
   # GET /pictures/1/edit
   def edit
@@ -35,6 +38,7 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
+    # binding.pry
     respond_to do |format|
       if @picture.save
         format.html { redirect_to pictures_path, notice: '投稿されました' }
@@ -52,7 +56,7 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: '編集されました' }
+        format.html { redirect_to pictures_path, notice: '編集されました' }
         format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit }
@@ -79,6 +83,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:title, :content)
+      params.require(:picture).permit(:title, :content, :image, :image_cache, :remove_image)
     end
 end
